@@ -1,0 +1,239 @@
+.dashboard-container {
+  padding: 24px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .subtitle {
+    margin: 8px 0 0 0;
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+
+  p {
+    margin-top: 16px;
+    color: #666;
+  }
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+// KPI Cards
+.kpi-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.kpi-card {
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  mat-card-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px !important;
+  }
+
+  &.warning {
+    border-left: 4px solid #f44336;
+  }
+
+  &.highlight {
+    background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+    color: white;
+
+    .kpi-icon {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .kpi-label {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+.kpi-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  &.products {
+    background: #e3f2fd;
+    color: #1976d2;
+  }
+
+  &.suppliers {
+    background: #fce4ec;
+    color: #c2185b;
+  }
+
+  &.warehouses {
+    background: #e8f5e9;
+    color: #388e3c;
+  }
+
+  &.low-stock {
+    background: #ffebee;
+    color: #d32f2f;
+  }
+
+  &.orders {
+    background: #fff3e0;
+    color: #f57c00;
+  }
+
+  &.value {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+}
+
+.kpi-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: inherit;
+}
+
+.kpi-label {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+}
+
+// Charts Row
+.charts-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+.chart-card {
+  border-radius: 8px;
+
+  mat-card-header {
+    padding: 16px 16px 0 16px;
+  }
+
+  mat-card-title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  mat-card-content {
+    padding: 16px;
+  }
+}
+
+.chart-container {
+  height: 300px;
+  position: relative;
+}
+
+// Tables Row
+.tables-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+.table-card {
+  border-radius: 8px;
+
+  mat-card-header {
+    padding: 16px 16px 0 16px;
+  }
+
+  mat-card-title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  mat-card-content {
+    padding: 0;
+  }
+}
+
+.products-table {
+  width: 100%;
+
+  th {
+    background: #fafafa;
+    font-weight: 500;
+  }
+
+  td, th {
+    padding: 12px 16px;
+  }
+}
+
+.activity-list {
+  mat-list-item {
+    height: auto !important;
+    padding: 12px 16px !important;
+    border-bottom: 1px solid #eee;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px;
+  }
+
+  .charts-row,
+  .tables-row {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,65 @@
+<div class="inventory-container">
+  <div class="page-header">
+    <h1>Inventory Management</h1>
+    <button mat-raised-button color="primary">
+      <mat-icon>add</mat-icon> Add Stock
+    </button>
+  </div>
+
+  <mat-card class="inventory-card">
+    <mat-card-content>
+      <div *ngIf="isLoading" class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+
+      <table mat-table [dataSource]="inventoryItems" *ngIf="!isLoading" class="inventory-table">
+        <ng-container matColumnDef="sku">
+          <th mat-header-cell *matHeaderCellDef>SKU</th>
+          <td mat-cell *matCellDef="let item">{{ item.sku }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="productName">
+          <th mat-header-cell *matHeaderCellDef>Product Name</th>
+          <td mat-cell *matCellDef="let item">{{ item.productName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="warehouseName">
+          <th mat-header-cell *matHeaderCellDef>Warehouse</th>
+          <td mat-cell *matCellDef="let item">{{ item.warehouseName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantityOnHand">
+          <th mat-header-cell *matHeaderCellDef>Qty On Hand</th>
+          <td mat-cell *matCellDef="let item">{{ item.quantityOnHand }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantityAvailable">
+          <th mat-header-cell *matHeaderCellDef>Qty Available</th>
+          <td mat-cell *matCellDef="let item">{{ item.quantityAvailable }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="unitCost">
+          <th mat-header-cell *matHeaderCellDef>Unit Cost</th>
+          <td mat-cell *matCellDef="let item">{{ formatCurrency(item.unitCost) }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalValue">
+          <th mat-header-cell *matHeaderCellDef>Total Value</th>
+          <td mat-cell *matCellDef="let item">{{ formatCurrency(item.totalValue) }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let item">
+            <span class="status-badge" [ngClass]="getStatusClass(item)">
+              {{ getStockStatus(item) }}
+            </span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

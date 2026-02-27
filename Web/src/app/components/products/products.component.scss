@@ -1,0 +1,52 @@
+.products-container {
+  padding: 24px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+.products-card {
+  border-radius: 8px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.products-table {
+  width: 100%;
+
+  th {
+    background: #fafafa;
+    font-weight: 500;
+  }
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+
+  &.status-active {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  &.status-inactive {
+    background: #eeeeee;
+    color: #757575;
+  }
+}

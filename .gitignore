@@ -1,0 +1,25 @@
+# .NET
+bin/
+obj/
+*.db
+*.user
+*.suo
+.vs/
+
+# Node
+node_modules/
+dist/
+.angular/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
