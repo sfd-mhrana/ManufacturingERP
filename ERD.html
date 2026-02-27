@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturing ERP - Database ERD</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manufacturing ERP System</h1>
+        <p class="subtitle">Entity Relationship Diagram (ERD) - Database Schema</p>
+
+        <div class="mermaid">
+erDiagram
+    Category ||--o{ Product : contains
+    Supplier ||--o{ Product : supplies
+    Supplier ||--o{ PurchaseOrder : receives
+    Product ||--o{ Inventory : tracked_in
+    Warehouse ||--o{ Inventory : stores
+    PurchaseOrder ||--o{ PurchaseOrderItem : has
+    Product ||--o{ PurchaseOrderItem : ordered_in
+
+    Category {
+        int CategoryId PK
+        string CategoryName
+        string Description
+        bool IsActive
+        datetime CreatedAt
+    }
+
+    Supplier {
+        int SupplierId PK
+        string CompanyName
+        string ContactPerson
+        string Email
+        string Phone
+        string Address
+        string City
+        string Country
+        bool IsActive
+        datetime CreatedAt
+    }
+
+    Product {
+        int ProductId PK
+        string ProductName
+        string SKU
+        string Description
+        decimal UnitPrice
+        int ReorderLevel
+        int CategoryId FK
+        int SupplierId FK
+        bool IsActive
+        datetime CreatedAt
+        datetime UpdatedAt
+    }
+
+    Warehouse {
+        int WarehouseId PK
+        string WarehouseName
+        string WarehouseCode
+        string Address
+        string City
+        string Country
+        string ManagerName
+        string Phone
+        int Capacity
+        bool IsActive
+        datetime CreatedAt
+    }
+
+    Inventory {
+        int InventoryId PK
+        int ProductId FK
+        int WarehouseId FK
+        int QuantityOnHand
+        int QuantityReserved
+        decimal UnitCost
+        datetime LastStockUpdate
+        datetime LastCountDate
+    }
+
+    PurchaseOrder {
+        int PurchaseOrderId PK
+        string OrderNumber
+        int SupplierId FK
+        datetime OrderDate
+        datetime ExpectedDeliveryDate
+        datetime ActualDeliveryDate
+        string Status
+        decimal TotalAmount
+        string Notes
+        datetime CreatedAt
+        datetime UpdatedAt
+    }
+
+    PurchaseOrderItem {
+        int PurchaseOrderItemId PK
+        int PurchaseOrderId FK
+        int ProductId FK
+        int Quantity
+        decimal UnitPrice
+    }
+
+    User {
+        int UserId PK
+        string Username
+        string Email
+        string PasswordHash
+        string FirstName
+        string LastName
+        string Role
+        bool IsActive
+        datetime CreatedAt
+        datetime LastLoginAt
+    }
+        </div>
+
+        <div class="footer">
+            Manufacturing ERP System &copy; 2024 | Northern University Bangladesh - Industrial Training Project
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            er: {
+                diagramPadding: 20,
+                layoutDirection: 'TB',
+                minEntityWidth: 100,
+                minEntityHeight: 75,
+                entityPadding: 15,
+                useMaxWidth: true
+            }
+        });
+    </script>
+</body>
+</html>
